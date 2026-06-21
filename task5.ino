@@ -2,39 +2,38 @@ int startValue = 5;
 int ledPin = 13;
 
 void flashLED(int times) {
-  int count = times;
-
-  while (count > 0) {
-    digitalWrite(ledPin, HIGH);
-    delay(200);
-    digitalWrite(ledPin, LOW);
-    delay(200);
-
-    count = count - 1;
-  }
+     int i = 0;
+     while(i < times) {
+        digitalWrite(ledPin, HIGH);     
+        delay(200);                      
+       
+        digitalWrite(ledPin, LOW);
+        delay(200);
+        i = i + 1;
+    }
+    
 }
-
 void setup() {
-  pinMode(ledPin, OUTPUT);
-  Serial.begin(9600);
+     pinMode(ledPin, OUTPUT);
+     Serial.begin(9600);
 
-  Serial.println("=== Smart Countdown Starting ===");
+     Serial.println("=== Smart Countdown Starting ===");
 
-  int count = startValue;
+     int count = startValue;
+     while(count > 0) {
+          Serial.print("Count: ");
+          Serial.println(count);
 
-  while (count > 0) {
-    Serial.print("Count: ");
-    Serial.println(count);
+          flashLED(count);      // blink the LED
 
-    delay(1000);
-    count = count - 1;
-  }
+          delay(1000);
+          count = count - 1;
+     }
 
-  flashLED(3);
+     Serial.println("=== Countdown Complete ===");
 
-  Serial.println("=== Countdown Complete ===");
 }
 
 void loop() {
-  
+
 }
